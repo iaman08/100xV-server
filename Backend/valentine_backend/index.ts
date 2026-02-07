@@ -9,7 +9,7 @@ import openUserRoutes from "./routes/openuser";
 import cookieParser from "cookie-parser";
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 // CORS configuration - allow frontend origins
 const corsOptions = {
@@ -17,8 +17,9 @@ const corsOptions = {
     "http://localhost:8080",
     "http://localhost:5173",
     "http://127.0.0.1:8080",
-    // Add production domain here when deploying
-  ],
+    // Production domain from environment variable
+    process.env.FRONTEND_URL,
+  ].filter(Boolean) as string[],
   credentials: true, // Allow cookies to be sent
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
