@@ -29,16 +29,18 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
+// Health check endpoint - MUST be before other routes
+app.get("/", (req, res) => {
+  res.send("Hello via Bun + Express!");
+});
+
 // Use routes
 app.use("/", referralRoutes);
 app.use("/", userRoutes);
 app.use("/", registerRoutes);
 app.use("/", openUserRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Hello via Bun + Express!");
-});
-
-app.listen(port, () => {
-  console.log(`Listening on localhost:${port}`);
+// Bind to 0.0.0.0 for Railway (required for external access)
+app.listen(Number(port), "0.0.0.0", () => {
+  console.log(`Server running on 0.0.0.0:${port}`);
 });
