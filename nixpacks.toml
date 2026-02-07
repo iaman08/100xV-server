@@ -1,14 +1,18 @@
 # Nixpacks configuration for Railway
 # Explicitly use Bun provider
 
+providers = []
+
 [phases.setup]
 nixPkgs = ["bun"]
 
 [phases.install]
+dependsOn = ["setup"]
 cmds = ["cd Backend/valentine_backend && bun install"]
 
 [phases.build]
-cmds = ["cd Backend/valentine_backend && bun run build"]
+dependsOn = ["install"]
+cmds = ["cd Backend/valentine_backend && bun run prisma generate"]
 
 [start]
-cmd = "cd Backend/valentine_backend && bun run start"
+cmd = "cd Backend/valentine_backend && bun run index.ts"
