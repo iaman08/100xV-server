@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: valentine-backend
+    runtime: docker
+    rootDir: Backend/valentine_backend
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: PORT
+        value: 10000
+    healthCheckPath: /
