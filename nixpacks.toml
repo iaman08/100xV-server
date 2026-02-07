@@ -1,0 +1,14 @@
+# Nixpacks configuration for Railway
+# Explicitly use Bun provider
+
+[phases.setup]
+nixPkgs = ["bun"]
+
+[phases.install]
+cmds = ["cd Backend/valentine_backend && bun install"]
+
+[phases.build]
+cmds = ["cd Backend/valentine_backend && bun run build"]
+
+[start]
+cmd = "cd Backend/valentine_backend && bun run start"
