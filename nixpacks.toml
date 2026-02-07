@@ -12,7 +12,7 @@ cmds = ["cd Backend/valentine_backend && bun install"]
 
 [phases.build]
 dependsOn = ["install"]
-cmds = ["cd Backend/valentine_backend && bun run prisma generate"]
+cmds = ["cd Backend/valentine_backend && bunx prisma generate"]
 
 [start]
 cmd = "cd Backend/valentine_backend && bun run index.ts"
